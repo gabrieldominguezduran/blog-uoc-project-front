@@ -1,0 +1,30 @@
+<div style="margin-left: auto; margin-right: auto">
+  <p id="registerFeedback"></p>
+</div>
+<div>
+  <h1>Register</h1>
+  <form [formGroup]="registerForm" (ngSubmit)="register()">
+    <label for="name">Name:</label>
+    <input type="text" [formControl]="name" />
+    <label for="surname_1">Surname 1:</label>
+    <input type="text" [formControl]="surname_1" />
+    <label for="surname_2">Surname 2:</label>
+    <input type="text" [formControl]="surname_2" />
+    <label for="alias">Alias:</label>
+    <input type="text" [formControl]="alias" />
+    <label for="birth_date">Birth of date:</label>
+    <input type="date" [formControl]="birth_date" />
+    <label for="email">Email:</label>
+    <input type="email" [formControl]="email" />
+    <label for="password">Password:</label>
+    <input type="password" [formControl]="password" />
+
+    <button type="submit" [disabled]="!registerForm.valid">Register</button>
+  </form>
+  <!-- TODO 18 -->
+</div>
+<div *ngIf="name.errors">
+  <span style="color: red" *ngIf="name.errors && (name.touched || name.dirty)">
+    <span *ngIf="name.errors.required">Name is required</span>
+  </span>
+</div>
