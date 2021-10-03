@@ -25,6 +25,60 @@
 </div>
 <div *ngIf="name.errors">
   <span style="color: red" *ngIf="name.errors && (name.touched || name.dirty)">
-    <span *ngIf="name.errors.required">Name is required</span>
+    Min 5 characters
+    <span *ngIf="name.errors.required"> Name is required</span>
+  </span>
+</div>
+
+<div *ngIf="surname_1.errors">
+  <span
+    style="color: red"
+    *ngIf="surname_1.errors && (surname_1.touched || surname_1.dirty)"
+    >Min 5 characters
+    <span *ngIf="surname_1.errors.required"> Surname 1 is required</span>
+  </span>
+</div>
+
+<div *ngIf="surname_2.errors">
+  <span
+    style="color: red"
+    *ngIf="surname_2.errors && (surname_2.touched || surname_2.dirty)"
+    >Min 5 characters
+  </span>
+</div>
+
+<div *ngIf="alias.errors">
+  <span
+    style="color: red"
+    *ngIf="alias.errors && (alias.touched || alias.dirty)"
+    >Min 5 characters
+    <span *ngIf="alias.errors.required"> Alias is required</span>
+  </span>
+</div>
+
+<div *ngIf="birth_date.errors">
+  <span
+    style="color: red"
+    *ngIf="birth_date.errors && (birth_date.touched || birth_date.dirty)"
+  >
+    <span *ngIf="birth_date.errors.required"> Birth date is required</span>
+  </span>
+</div>
+
+<div *ngIf="email.errors">
+  <span
+    style="color: red"
+    *ngIf="email.errors && (email.touched || email.dirty)"
+    >Must be a valid email
+    <span *ngIf="email.errors.required"> Email is required</span>
+  </span>
+</div>
+
+<div *ngIf="password.errors">
+  <span
+    style="color: red"
+    *ngIf="password.errors && (password.touched || password.dirty)"
+    >Min 8 characters
+    <span *ngIf="password.errors.required"> Password is required</span>
   </span>
 </div>

@@ -164,6 +164,11 @@ export class CategoryFormComponent implements OnInit {
     this.isValidForm = true;
     this.category = this.categoryForm.value;
 
+    if (this.isUpdateMode) {
+      this.validRequest = await this.editCategory();
+    } else {
+      this.validRequest = await this.createCategory();
+    }
     // TODO 10
   }
 }

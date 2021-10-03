@@ -38,10 +38,12 @@ export class CategoriesListComponent {
   }
 
   createCategory(): void {
+    this.router.navigateByUrl('/user/category/');
     // TODO 7
   }
 
   updateCategory(categoryId: string): void {
+    this.router.navigateByUrl('/user/category/' + categoryId);
     // TODO 8
   }
 
@@ -58,6 +60,8 @@ export class CategoriesListComponent {
           categoryId
         );
         if (rowsAffected.affected > 0) {
+          this.loadCategories();
+
           // TODO 9
         }
       } catch (error: any) {
