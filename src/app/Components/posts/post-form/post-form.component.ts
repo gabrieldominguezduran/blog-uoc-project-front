@@ -11,6 +11,7 @@ import { LocalStorageService } from 'src/app/Services/local-storage.service';
 import { PostService } from 'src/app/Services/post.service';
 import { SharedService } from 'src/app/Services/shared.service';
 import { PostDTO } from 'src/app/Models/post.dto';
+import { CategoryDTO } from 'src/app/Models/category.dto';
 
 @Component({
   selector: 'app-post-form',
@@ -22,7 +23,8 @@ export class PostFormComponent implements OnInit {
   title: FormControl;
   description: FormControl;
   publication_date: FormControl;
-  categories: FormControl;
+  categories!: FormControl;
+  categoriesList: CategoryDTO[];
 
   postForm: FormGroup;
   isValidForm: boolean | null;
@@ -30,6 +32,8 @@ export class PostFormComponent implements OnInit {
   private isUpdateMode: boolean;
   private validRequest: boolean;
   private postId: string | null;
+  private userId: any;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private postService: PostService,
@@ -44,6 +48,8 @@ export class PostFormComponent implements OnInit {
     this.post = new PostDTO('', '', 0, 0, new Date());
     this.isUpdateMode = false;
     this.validRequest = false;
+    this.categoriesList = [];
+    this.userId = this.localStorageService.get('user_id');
 
     this.title = new FormControl(this.post.title, [
       Validators.required,
@@ -59,10 +65,7 @@ export class PostFormComponent implements OnInit {
       Validators.required,
     ]);
 
-    this.categories = new FormControl(this.categoryService, [
-      Validators.required,
-    ]);
-    console.log(this.categories);
+    this.categories = new FormControl([]);
 
     this.postForm = this.formBuilder.group({
       title: this.title,
@@ -74,6 +77,10 @@ export class PostFormComponent implements OnInit {
   // TODO 13
   async ngOnInit(): Promise<void> {
     let errorResponse: any;
+
+    this.categoriesList = await this.categoryService.getCategoriesByUserId(
+      this.userId
+    );
 
     if (this.postId) {
       this.isUpdateMode = true;

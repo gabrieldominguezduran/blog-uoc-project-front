@@ -58,8 +58,16 @@
 
     <div>
       <label for="description">Categories:</label>
-      <input type="text" [formControl]="categories" />
-      {{ categories }}
+
+      <select multiple [formControl]="categories">
+        <option
+          *ngFor="let category of categoriesList"
+          [ngValue]="category.categoryId"
+        >
+          {{ category.title }}
+        </option>
+      </select>
+
       <div *ngIf="categories.errors">
         <div
           *ngIf="publication_date.errors && isValidForm != null && !isValidForm"
