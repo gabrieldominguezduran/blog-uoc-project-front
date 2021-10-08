@@ -36,6 +36,18 @@ export class HomeComponent {
     );
   }
   private async loadPosts(): Promise<void> {
+    let errorResponse: any;
+    const userId = this.localStorageService.get('user_id');
+    try {
+      this.posts = await this.postService.getPosts();
+      console.log(this.posts);
+    } catch (error: any) {
+      errorResponse = error.error;
+      this.sharedService.errorLog(errorResponse);
+    }
+    if (userId) {
+      this.showButtons = true;
+    }
     // TODO 2
   }
 
