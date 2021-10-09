@@ -40,7 +40,6 @@ export class HomeComponent {
     const userId = this.localStorageService.get('user_id');
     try {
       this.posts = await this.postService.getPosts();
-      console.log(this.posts);
     } catch (error: any) {
       errorResponse = error.error;
       this.sharedService.errorLog(errorResponse);

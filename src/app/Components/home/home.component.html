@@ -21,7 +21,7 @@
       Dislikes: <span>{{ post.num_dislikes }}</span>
     </p>
     <p>
-      Publication date: <span>{{ post.publication_date }}</span>
+      Publication date: <span>{{ post.publication_date | formatDate: 3 }}</span>
     </p>
     <p>
       Published by: <span>{{ post.userAlias }}</span>
